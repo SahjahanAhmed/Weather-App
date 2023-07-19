@@ -1,9 +1,9 @@
 *{
-  margin: 0;padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 body{
-  
   background: linear-gradient(skyblue,white,skyblue);
 }
 
