@@ -12,16 +12,21 @@ const handleSubmitForm = async (e) => {
   if (inputEl.value == '') return
 
   // api link
-  const url = `http://api.openweathermap.org/data/2.5/weather?q=${inputEl.value.toLocaleLowerCase()}&units=imperial&appid=c7aeffdb8a408e486ea2c3348c1a6fd4`
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${inputEl.value.toLocaleLowerCase()}&units=imperial&appid=c7aeffdb8a408e486ea2c3348c1a6fd4`
 
   // fetching weathers
   fetch(url).then(res => res.json()).then(data => {
 
     // fahrenheit to celsius
-    const celsius = (data.main.temp - 32) * 5 / 9
+    const celsius = ((data.main.temp - 32) * 5 / 9)
 
     // how is the weather!!
-    let state = celsius <= 16 && 'Cool' || celsius > 16 && celsius <= 28 && 'Warm' || celsius > 28 && celsius <= 36 && 'Hot' || celsius > 36 && 'Too hot'
+    let state =
+      celsius <= 16 ? 'Cool' :
+      celsius > 16 && celsius <= 28 ? 'Warm' :
+      celsius > 28 && celsius <= 36 ? 'Hot' :
+      'Too hot';
+
 
     // showing weather in bottom section
     bottom.innerHTML = `
@@ -31,7 +36,7 @@ const handleSubmitForm = async (e) => {
    </div>
    
      <div>
-     <p>${celsius.toFixed()}° c</p> 
+     <p>${celsius.toFixed()}° c </p> 
      <p> ${data.main.temp.toFixed()}° f</p>
      </div>
      
@@ -43,7 +48,7 @@ const handleSubmitForm = async (e) => {
      
      <div>
      <h2>${data.name},  ${data.sys.country}
-     </h1>
+     </h2>
       </div>`
 
   })
